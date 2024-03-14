@@ -45,6 +45,7 @@ public class BookService {
 
     //대출
     public void insertLend(Lend lend) {
+
         lendRepository.save(lend);
 
     }

@@ -28,6 +28,7 @@ public class BookController {
 
     @GetMapping("/book")
     public Book getBook(@RequestParam Long id) {
+        System.out.println("test\n");
         return bookService.searchById(id);
     }
 
