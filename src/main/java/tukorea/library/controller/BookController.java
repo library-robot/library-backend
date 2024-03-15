@@ -33,16 +33,16 @@ public class BookController {
     }
 
     @PostMapping("/book/lend")
-    public String lendBook(@RequestBody Lend lend) {
+    public boolean lendBook(@RequestBody Lend lend) {
         LocalDate now = LocalDate.now();
         lend.setLendDate(String.valueOf(now));
-        bookService.insertLend(lend);
-        return "ok";
+
+        return bookService.insertLend(lend);
     }
     @PostMapping("/book/return")
-    public String returnBook(@RequestBody Lend lend) {
-        bookService.updateLend(lend.getBookId());
-        return "ok";
+    public boolean returnBook(@RequestBody Lend lend) {
+
+        return bookService.updateLend(lend.getBookId());
     }
 
 }
