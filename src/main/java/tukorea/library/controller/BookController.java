@@ -63,8 +63,4 @@ public class BookController {
         return bookDetail;
     }
 
-    @PostMapping("/book/located-book")
-    public List<Book> isLocatedBook(@RequestBody ) {
-
-    }
 }
