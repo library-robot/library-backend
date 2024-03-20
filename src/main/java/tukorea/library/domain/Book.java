@@ -2,11 +2,13 @@ package tukorea.library.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "book2")
 public class Book {
