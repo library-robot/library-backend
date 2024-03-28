@@ -34,6 +34,7 @@ public class Member implements UserDetails {
     private String email;
     private String username;
     private String rfidNumber;
+    private String role;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();

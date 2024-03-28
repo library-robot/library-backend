@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+import tukorea.library.DTO.BookLocatedDTO;
 import tukorea.library.DTO.SearchBookDto;
 import tukorea.library.domain.Book;
 import tukorea.library.domain.Lend;
@@ -62,5 +63,13 @@ public class BookController {
         }
         return bookDetail;
     }
+
+    @PostMapping("/book/located-book")
+    public List<Book> isLocatedBook(@RequestBody BookLocatedDTO bookLocatedDTO) {
+        System.out.println(bookLocatedDTO.toString());
+//        return bookService.checkBookLocation(bookLocatedDTO);
+        return null;
+    }
+
 
 }

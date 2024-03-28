@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import tukorea.library.DTO.LoginDTO;
+import tukorea.library.DTO.LoginReturnDTO;
 import tukorea.library.DTO.MemberLendListDTO;
 import tukorea.library.domain.Member;
 import tukorea.library.jwt.JwtToken;
@@ -29,7 +30,7 @@ public class MemberController {
     }
 
     @PostMapping("/members/login")
-    public JwtToken sign(@RequestBody LoginDTO loginDTO) {
+    public LoginReturnDTO sign(@RequestBody LoginDTO loginDTO) {
         String username = loginDTO.getUsername();
         String password = loginDTO.getPassword();
         return memberService.signIn(username, password);

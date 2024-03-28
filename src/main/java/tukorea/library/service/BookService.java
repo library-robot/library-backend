@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tukorea.library.DTO.BookLocatedDTO;
 import tukorea.library.DTO.SearchBookDto;
 import tukorea.library.domain.Book;
 import tukorea.library.domain.Lend;
@@ -93,5 +94,19 @@ public class BookService {
             return true;
         }
         else return false;
+    }
+
+    public List<Book> checkBookLocation(BookLocatedDTO bookLocatedDTO) {
+        String location = bookLocatedDTO.getLocation();
+        ArrayList<Book> bookList = new ArrayList<>();
+
+        for(String rfidTag : bookLocatedDTO.getRfidList()){
+            Book book = bookRepository.findByTagNumber(rfidTag);
+
+            if (book.getCallNumber().substring(0,3).equals(location))
+                bookList.add(book);
+        }
+
+        return bookList;
     }
 }

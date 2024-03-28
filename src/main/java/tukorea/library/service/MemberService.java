@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tukorea.library.DTO.LoginReturnDTO;
 import tukorea.library.DTO.MemberLendListDTO;
 import tukorea.library.domain.Member;
 import tukorea.library.jwt.JwtToken;
@@ -69,7 +70,9 @@ public class MemberService {
     }
 
     @Transactional
-    public JwtToken signIn(String username, String password) {
+    public LoginReturnDTO signIn(String username, String password) {
+        LoginReturnDTO loginReturnDTO = new LoginReturnDTO();
+        Member member = getMember(username);
         try {
             // 1. username + password 를 기반으로 Authentication 객체 생성
             // 이때 authentication 은 인증 여부를 확인하는 authenticated 값이 false
@@ -81,10 +84,13 @@ public class MemberService {
             Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 
             // 3. 인증 정보를 기반으로 JWT 토큰 생성
-            JwtToken jwtToken = jwtTokenProvider.generateToken(authentication);
-            return jwtToken;
+            JwtToken jwtToken = jwtTokenProvider.generateToken(authentication,member);
+            loginReturnDTO.setJwtToken(jwtToken);
+            loginReturnDTO.setRole(member.getRole());
+            return loginReturnDTO;
         } catch (Exception e) {
-            return JwtToken.builder().build();
+            loginReturnDTO.setJwtToken(JwtToken.builder().build());
+            return loginReturnDTO;
         }
 
     }

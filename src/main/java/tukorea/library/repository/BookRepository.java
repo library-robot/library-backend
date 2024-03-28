@@ -12,6 +12,8 @@ import java.util.List;
 public interface BookRepository extends JpaRepository<Book,Long> {
     public Page<Book> findByTitleContains(String title , Pageable pageable);
     public List<Book> findByAuthorIgnoreCaseContaining(String author);
+    public Book findByTagNumber(String rfidTag);
+
 
 
 }

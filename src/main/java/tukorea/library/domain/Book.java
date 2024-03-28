@@ -28,5 +28,6 @@ public class Book {
     private String edition;
     private String language;
     private String publisher;
+    private String tagNumber;
 
 }
