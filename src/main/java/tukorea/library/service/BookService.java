@@ -8,15 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 import tukorea.library.DTO.BookLocatedDTO;
 import tukorea.library.DTO.SearchBookDto;
 import tukorea.library.domain.Book;
+import tukorea.library.domain.DisplacedBook;
 import tukorea.library.domain.Lend;
 import tukorea.library.openAPI.BookAPI;
 import tukorea.library.openAPI.BookDetail;
 import tukorea.library.repository.BookRepository;
+import tukorea.library.repository.DisplacedBookRepository;
 import tukorea.library.repository.LendRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,14 +27,17 @@ public class BookService {
 
     private final BookRepository bookRepository;
     private final LendRepository lendRepository;
-
-
+    private final DisplacedBookRepository displacedBookRepository;
 
     @Autowired
-    public BookService(BookRepository bookRepository, LendRepository lendRepository) {
+
+    public BookService(BookRepository bookRepository, LendRepository lendRepository, DisplacedBookRepository displacedBookRepository) {
         this.bookRepository = bookRepository;
         this.lendRepository = lendRepository;
+        this.displacedBookRepository = displacedBookRepository;
     }
+
+
 
 
 
@@ -96,17 +100,5 @@ public class BookService {
         else return false;
     }
 
-    public List<Book> checkBookLocation(BookLocatedDTO bookLocatedDTO) {
-        String location = bookLocatedDTO.getLocation();
-        ArrayList<Book> bookList = new ArrayList<>();
 
-        for(String rfidTag : bookLocatedDTO.getRfidList()){
-            Book book = bookRepository.findByTagNumber(rfidTag);
-
-            if (book.getCallNumber().substring(0,3).equals(location))
-                bookList.add(book);
-        }
-
-        return bookList;
-    }
 }

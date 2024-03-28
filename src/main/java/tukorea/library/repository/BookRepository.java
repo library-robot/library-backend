@@ -10,9 +10,9 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book,Long> {
-    public Page<Book> findByTitleContains(String title , Pageable pageable);
-    public List<Book> findByAuthorIgnoreCaseContaining(String author);
-    public Book findByTagNumber(String rfidTag);
+    Page<Book> findByTitleContains(String title , Pageable pageable);
+    List<Book> findByAuthorIgnoreCaseContaining(String author);
+    Book findByTagNumber(String rfidTag);
 
 
 

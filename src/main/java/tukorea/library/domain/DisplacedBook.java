@@ -19,4 +19,14 @@ public class DisplacedBook {
     private String callNumber;
     private String publisher;
 
+    public DisplacedBook() {
+    }
+
+    public DisplacedBook(Book book) {
+        this.id = book.getId();
+        this.isbn = book.getISBN();
+        this.title = book.getTitle();
+        this.callNumber = book.getCallNumber();
+        this.publisher = book.getPublisher();
+    }
 }

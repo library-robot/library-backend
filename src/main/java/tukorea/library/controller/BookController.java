@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import tukorea.library.DTO.BookLocatedDTO;
 import tukorea.library.DTO.SearchBookDto;
 import tukorea.library.domain.Book;
+import tukorea.library.domain.DisplacedBook;
 import tukorea.library.domain.Lend;
 import tukorea.library.openAPI.BookAPI;
 import tukorea.library.openAPI.BookDetail;
@@ -64,12 +65,8 @@ public class BookController {
         return bookDetail;
     }
 
-    @PostMapping("/book/located-book")
-    public List<Book> isLocatedBook(@RequestBody BookLocatedDTO bookLocatedDTO) {
-        System.out.println(bookLocatedDTO.toString());
-//        return bookService.checkBookLocation(bookLocatedDTO);
-        return null;
-    }
+
+
 
 
 }
