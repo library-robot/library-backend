@@ -31,9 +31,11 @@ public class DisplacedBookService {
 
         for(String rfidTag : bookLocatedDTO.getRfidList()){
             Book book = bookRepository.findByTagNumber(rfidTag);
-
-            if (!book.getCallNumber().substring(0,3).equals(location))
-                displacedBookRepository.save(new DisplacedBook(book));
+            if (!book.getCallNumber().substring(0,3).equals(location)){
+                //나중에 쿼리 튜닝 해야됨. 너무 쿼리 많음
+                if(displacedBookRepository.findByIsbn(book.getISBN()).isEmpty())
+                    displacedBookRepository.save(new DisplacedBook(book));
+            }
         }
     }
 
