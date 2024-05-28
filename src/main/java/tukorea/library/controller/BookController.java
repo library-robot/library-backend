@@ -3,6 +3,7 @@ package tukorea.library.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+import tukorea.library.DTO.LendUserBookDto;
 import tukorea.library.DTO.SearchBookDto;
 import tukorea.library.domain.Book;
 import tukorea.library.domain.Lend;
@@ -36,10 +37,9 @@ public class BookController {
     }
 
     @PostMapping("/book/lend")
-    public boolean lendBook(@RequestBody Lend lend) {
-        LocalDate now = LocalDate.now();
-        lend.setLendDate(String.valueOf(now));
-        return bookService.insertLend(lend);
+    public boolean lendBook(@RequestBody LendUserBookDto lendUserBookDto) {
+
+        return bookService.insertLend(lendUserBookDto);
     }
 
     @PostMapping("/book/return")

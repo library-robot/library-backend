@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tukorea.library.DTO.BookLocatedDTO;
+import tukorea.library.DTO.LocatedInfo;
 import tukorea.library.domain.DisplacedBook;
 import tukorea.library.service.DisplacedBookService;
 
@@ -27,9 +28,9 @@ public class DisplacedBookController {
         return displacedBookService.findDisplacedBookList();
     }
     @PostMapping("/book/located-book")
-    public void isLocatedBook(@RequestBody BookLocatedDTO bookLocatedDTO) {
+    public List<LocatedInfo> isLocatedBook(@RequestBody BookLocatedDTO bookLocatedDTO) {
         System.out.println(bookLocatedDTO.toString());
-        displacedBookService.checkBookLocation(bookLocatedDTO);
+        return displacedBookService.checkBookLocation(bookLocatedDTO);
 //        return null;
     }
     @PostMapping(value = "/book/displaced-image" ,consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
