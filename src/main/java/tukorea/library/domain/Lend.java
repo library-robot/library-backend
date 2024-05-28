@@ -18,6 +18,9 @@ public class Lend {
     private String lendDate;
     private String returnDate;
 
+    public Lend() {
+    }
+
     public Lend(Long bookId, String username, String lendDate) {
         this.bookId = bookId;
         this.username = username;
